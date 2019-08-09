@@ -379,7 +379,7 @@ class PinCodeTextFieldState extends State<PinCodeTextField> {
       currentIndex = text.length;
     });
     if (text.length == widget.maxLength) {
-      if (hideKeyboardOnDone) {
+      if (widget.hideKeyboardOnDone) {
         FocusScope.of(context).requestFocus(FocusNode());
       }
       widget.onDone(text);
