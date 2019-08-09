@@ -93,6 +93,7 @@ class PinCodeTextField extends StatefulWidget {
   final WrapAlignment wrapAlignment;
   final PinCodeTextFieldLayoutType pinCodeTextFieldLayoutType;
   final TextDirection textDirection;
+  final hideKeyboardOnDone;
 
   const PinCodeTextField({
     Key key,
@@ -120,6 +121,7 @@ class PinCodeTextField extends StatefulWidget {
     this.wrapAlignment: WrapAlignment.start,
     this.pinCodeTextFieldLayoutType: PinCodeTextFieldLayoutType.NORMAL,
     this.textDirection: TextDirection.ltr,
+    this.hideKeyboardOnDone: true,
   }) : super(key: key);
 
   @override
@@ -377,7 +379,9 @@ class PinCodeTextFieldState extends State<PinCodeTextField> {
       currentIndex = text.length;
     });
     if (text.length == widget.maxLength) {
-      FocusScope.of(context).requestFocus(FocusNode());
+      if (hideKeyboardOnDone) {
+        FocusScope.of(context).requestFocus(FocusNode());
+      }
       widget.onDone(text);
     }
   }
