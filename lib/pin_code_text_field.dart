@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart' show CupertinoTextField;
 import 'package:flutter/material.dart';
 import 'package:flutter/animation.dart';
+import 'package:flutter/services.dart';
 
 typedef OnDone = void Function(String text);
 typedef PinBoxDecoration = BoxDecoration Function(Color borderColor);
@@ -337,6 +338,9 @@ class PinCodeTextFieldState extends State<PinCodeTextField> {
         cursorColor: Colors.transparent,
         maxLength: widget.maxLength,
         onChanged: _onTextChanged,
+        inputFormatters: <TextInputFormatter>[
+          WhitelistingTextInputFormatter.digitsOnly
+        ],
       ),
     );
   }
@@ -360,6 +364,9 @@ class PinCodeTextFieldState extends State<PinCodeTextField> {
         cursorColor: Colors.transparent,
         maxLength: widget.maxLength,
         onChanged: _onTextChanged,
+        inputFormatters: <TextInputFormatter>[
+          WhitelistingTextInputFormatter.digitsOnly
+        ],
       ),
     );
   }
